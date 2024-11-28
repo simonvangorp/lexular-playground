@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 import requests
-#import whisper
+import whisper
 from time import sleep
 #from dotenv import load_dotenv
 
@@ -15,7 +15,7 @@ os.environ['GLADIA_API_KEY'] = st.secrets['GLADIA_API_KEY']
 
 # Define a function for Whisper transcription
 def transcribe_with_whisper(file_path):
-    #model = whisper.load_model("base")
+    model = whisper.load_model("base")
     result = model.transcribe(file_path)
     return result['text']
 
@@ -31,7 +31,6 @@ def make_request(url, headers, method="GET", data=None, files=None):
 
 # Function to transcribe audio using Gladia API
 def transcribe_with_gladia(file_path):
-    #gladia_api_key = os.getenv("GLADIA_API_KEY", "")  # Replace with your Gladia Token
     if not GLADIA_API_KEY:
         raise ValueError("Gladia API key not found in environment variables")
 
