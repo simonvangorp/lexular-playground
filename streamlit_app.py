@@ -3,17 +3,13 @@ import os
 import requests
 import whisper
 from time import sleep
-#from dotenv import load_dotenv
-
 
 # Load environment variables
+#from dotenv import load_dotenv
 #load_dotenv()
 
 os.environ['openai_api_key'] = st.secrets['openai_api_key']
 os.environ['gladia_api_key'] = st.secrets['gladia_api_key']
-st.write("gladia key")
-st.write(st.secrets['gladia_api_key'])
-st.write(os.environ['gladia_api_key'])
 
 # Define a function for Whisper transcription
 def transcribe_with_whisper(file_path):
