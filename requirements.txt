@@ -1,1 +1,5 @@
 streamlit
+os
+requests
+whisper
+python-dotenv
