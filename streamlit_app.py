@@ -9,9 +9,11 @@ from time import sleep
 # Load environment variables
 #load_dotenv()
 
-os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
-os.environ['GLADIA_API_KEY'] = st.secrets['GLADIA_API_KEY']
-
+os.environ['openai_api_key'] = st.secrets['openai_api_key']
+os.environ['gladia_api_key'] = st.secrets['gladia_api_key']
+st.write("gladia key")
+st.write(st.secrets['gladia_api_key'])
+st.write(os.environ['gladia_api_key'])
 
 # Define a function for Whisper transcription
 def transcribe_with_whisper(file_path):
@@ -31,12 +33,12 @@ def make_request(url, headers, method="GET", data=None, files=None):
 
 # Function to transcribe audio using Gladia API
 def transcribe_with_gladia(file_path):
-    if not GLADIA_API_KEY:
+    if not os.environ['gladia_api_key']:
         raise ValueError("Gladia API key not found in environment variables")
 
     # Step 1: Upload the audio file
     headers = {
-        "x-gladia-key": GLADIA_API_KEY,
+        "x-gladia-key": os.environ['gladia_api_key'],
         "accept": "application/json",
     }
 
