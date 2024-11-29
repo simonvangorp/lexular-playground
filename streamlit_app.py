@@ -115,7 +115,7 @@ def format_diarization(utterances):
                 start_time_formatted = f"{int(current_start // 60):02}:{current_start % 60:.1f}"
                 end_time_formatted = f"{int(current_end // 60):02}:{current_end % 60:.1f}"
                 formatted_output.append(
-                    f"Speaker {current_speaker} | {start_time_formatted} - {end_time_formatted}\n"
+                    f"Speaker {current_speaker} | {start_time_formatted} - {end_time_formatted} |"
                     f"{' '.join(current_text)}\n"
                 )
             # Start a new block
@@ -177,11 +177,6 @@ if uploaded_file and st.session_state.transcription is None:
 
 # Display the transcription if available
 if st.session_state.transcription:
-    st.write("### Transcription")
-    st.write(st.session_state.transcription)
-
-    # Display the time taken for transcription
-    st.write(f"### Time Taken: {st.session_state.transcription_time:.0f} seconds")
 
     # Add option to save as .txt file
     st.download_button(
@@ -190,3 +185,9 @@ if st.session_state.transcription:
         file_name="transcription.txt",
         mime="text/plain",
     )
+
+    st.write("### Transcription")
+    st.write(st.session_state.transcription)
+    # Display the time taken for transcription
+    st.write(f"### Time Taken: {st.session_state.transcription_time:.0f} seconds")
+
