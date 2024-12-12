@@ -5,5 +5,4 @@ whisper
 python-dotenv
 langchain
 langchain_community
-libportaudio2
 sounddevice

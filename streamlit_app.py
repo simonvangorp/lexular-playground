@@ -17,41 +17,42 @@ st.title("Transcriptie en ChatGPT Tool")
 transcript = ""
 
 # Tabs for "Record Audio", "Upload Bestand", "Transcriptie", and "ChatGPT"
-tab1, tab2, tab3, tab4 = st.tabs(["Record Audio", "Upload Bestand", "Transcriptie", "ChatGPT"])
+#(tab1, tab2, tab3, tab4) = st.tabs(["Record Audio", "Upload Bestand", "Transcriptie", "ChatGPT"])
+(tab2, tab3, tab4) = st.tabs(["Upload Bestand", "Transcriptie", "ChatGPT"])
 
 # Tab 1: Record Audio
-with tab1:
-    st.header("Audio Recorder")
-    st.markdown("Gebruik de knoppen hieronder om audio op te nemen en te verwerken.")
+#with tab1:
+#    st.header("Audio Recorder")
+#    st.markdown("Gebruik de knoppen hieronder om audio op te nemen en te verwerken.")
 
-    if "is_recording" not in st.session_state:
-        st.session_state.is_recording = False
+#    if "is_recording" not in st.session_state:
+#        st.session_state.is_recording = False
 
-    if st.button("Start Recording"):
-        if not st.session_state.is_recording:
-            start_recording()
-            st.session_state.is_recording = True
-            st.success("Opname gestart.")
+#    if st.button("Start Recording"):
+#        if not st.session_state.is_recording:
+#            start_recording()
+#            st.session_state.is_recording = True
+#            st.success("Opname gestart.")
 
-    if st.button("Stop Recording"):
-        if st.session_state.is_recording:
-            audio_array = stop_recording()
-            st.session_state.is_recording = False
-            if audio_array is not None:
-                st.success("Opname gestopt. Klaar om op te slaan.")
-                st.session_state["audio_array"] = audio_array
+ #   if st.button("Stop Recording"):
+ #       if st.session_state.is_recording:
+ #           audio_array = stop_recording()
+ #           st.session_state.is_recording = False
+ #           if audio_array is not None:
+ #               st.success("Opname gestopt. Klaar om op te slaan.")
+ #               st.session_state["audio_array"] = audio_array
 
-    if st.button("Save Recording"):
-        if "audio_array" in st.session_state:
-            file_path = save_audio(st.session_state["audio_array"])
-            if file_path:
-                st.success(f"Bestand opgeslagen als {file_path}.")
+#    if st.button("Save Recording"):
+#        if "audio_array" in st.session_state:
+#            file_path = save_audio(st.session_state["audio_array"])
+#            if file_path:
+#                st.success(f"Bestand opgeslagen als {file_path}.")
                 # Trigger transcription flow automatically
-                with st.spinner("Transcriberen..."):
-                    utterances = transcribe_with_gladia(file_path)
-                    transcript = format_diarization(utterances)
-                    st.session_state["transcript"] = transcript
-                    st.success("Transcripteerflow voltooid.")
+#                with st.spinner("Transcriberen..."):
+#                    utterances = transcribe_with_gladia(file_path)
+#                    transcript = format_diarization(utterances)
+#                    st.session_state["transcript"] = transcript
+#                    st.success("Transcripteerflow voltooid.")
 
 # Tab 2: Upload Bestand
 with tab2:
@@ -96,7 +97,7 @@ with tab4:
         initialize_chatbot()
 
         if "messages" not in st.session_state or not st.session_state.messages:
-            st.write("Initializing messages...")
+            #st.write("Initializing messages...")
             cleaned_transcript = "\n".join(
                 line.split("|")[0].strip() if "|" in line else line.strip()
                 for line in st.session_state["transcript"].splitlines()
