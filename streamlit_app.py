@@ -4,7 +4,7 @@ import streamlit as st
 # Set up the Streamlit page configuration
 st.set_page_config(page_title="Transcriptie en ChatGPT Tool", layout="wide")
 
-from record import start_recording, stop_recording, save_audio
+#from record import start_recording, stop_recording, save_audio
 from transcription import transcribe_with_gladia, format_diarization
 from llm import initialize_chatbot, display_chat, handle_user_input, generate_first_response
 
