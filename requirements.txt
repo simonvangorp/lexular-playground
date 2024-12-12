@@ -1,4 +1,8 @@
 streamlit
 requests
+openai
 whisper
 python-dotenv
+langchain
+langchain_community
+sounddevice
